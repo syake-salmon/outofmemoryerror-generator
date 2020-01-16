@@ -11,7 +11,7 @@ Apache-Mavenで下記コマンドを実行してください。
 <code>target</code>フォルダの下にWARが作成されます。
 
 ## 使用方法
-1. JavaEEサーバにWARをデプロイする(例, JBoss EAP)。
+1. JavaEEサーバにWARをデプロイする。(例, JBoss EAP)
 2. アプリにアクセスする。(例, http&#58;//localhost:8080/OOMEGenerator)
 3. リンクをクリックする。
 <img width="300" alt="screenshot" src="https://user-images.githubusercontent.com/34976416/72512044-e2372e00-388e-11ea-9cfc-4b2eafe08adf.png">
