@@ -15,7 +15,7 @@ If you have not installed maven, can download the WAR from [here](https://github
 ## How To Use
 1. Deploy WAR to JavaEE server.(ex, JBoss EAP)
 2. Access the application.(ex, http&#58;//localhost:8080/OOMEGenerator)
-3. Click hire.
+3. Click here.
 <img width="300" alt="screenshot" src="https://user-images.githubusercontent.com/34976416/72512044-e2372e00-388e-11ea-9cfc-4b2eafe08adf.png">
 
 ## Tips
