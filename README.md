@@ -1,5 +1,5 @@
 # OOME Generator
-*Generator for simulating java.lang.OutOfMemoryError because of the lack of java heap space.*
+*A generator for simulating java.lang.OutOfMemoryError because of the lack of java heap space.*
 
 ## How To Build
 Using Apache-Maven, execute a simple command below.
