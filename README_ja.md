@@ -10,6 +10,8 @@ Apache-Mavenで下記コマンドを実行してください。
 
 <code>target</code>フォルダの下にWARが作成されます。
 
+mavenをインストールしていない場合は、[こちら](https://github.com/syake-salmon/oome-generator/releases)からWARをダウンロードできます。
+
 ## 使用方法
 1. JavaEEサーバにWARをデプロイする。(例, JBoss EAP)
 2. アプリにアクセスする。(例, http&#58;//localhost:8080/OOMEGenerator)
