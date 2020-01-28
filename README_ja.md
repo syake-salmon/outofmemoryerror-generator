@@ -1,4 +1,6 @@
 # OOMEジェネレータ
+![Build](https://github.com/syake-salmon/oome-generator/workflows/Build/badge.svg) | [![codecov](https://codecov.io/gh/syake-salmon/oome-generator/branch/master/graph/badge.svg)](https://codecov.io/gh/syake-salmon/oome-generator)<br /><br />
+
 *Javaヒープ領域不足によるjava.lang.OutOfMemoryErrorの発生をシミュレートするためのジェネレータアプリです。*
 
 for [English](README.md)

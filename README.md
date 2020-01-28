@@ -1,4 +1,6 @@
 # OOME Generator
+![Build](https://github.com/syake-salmon/oome-generator/workflows/Build/badge.svg) | [![codecov](https://codecov.io/gh/syake-salmon/oome-generator/branch/master/graph/badge.svg)](https://codecov.io/gh/syake-salmon/oome-generator)<br /><br />
+
 *A generator for simulating java.lang.OutOfMemoryError because of the lack of java heap space.*
 
 日本語は[こちら](README_ja.md)
