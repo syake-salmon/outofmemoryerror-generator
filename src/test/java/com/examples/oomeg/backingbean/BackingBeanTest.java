@@ -21,7 +21,7 @@ import com.examples.oomeg.testutil.FacesContextMock;
 import com.examples.oomeg.util.OOMEGenerator;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ BackingBean.class, OOMEGenerator.class })
+@PrepareForTest({ OOMEGenerator.class })
 public class BackingBeanTest {
 
     @Rule
