@@ -13,6 +13,7 @@ public class ServletContextListenerImpl implements ServletContextListener {
     public static final String CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC = "GENERATE_OOME_INTERVAL_MILLISEC";
     public static final long DEFAULT_GENERATE_OOME_INTERVAL_MILSEC = 1000;
 
+    @Override
     public void contextInitialized(ServletContextEvent sce) {
         boolean flg = Boolean.valueOf(sce.getServletContext().getInitParameter(CONTXTPRM_GENERATE_OOME_ON_BOOT));
         if (flg) {
@@ -25,4 +26,7 @@ public class ServletContextListenerImpl implements ServletContextListener {
             }
         }
     }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {}
 }
