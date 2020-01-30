@@ -63,6 +63,9 @@ local.properties
 # Eclipse Core
 .project
 
+# Checkstyle Plugin
+.checkstyle
+
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
