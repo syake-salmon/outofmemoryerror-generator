@@ -1,5 +1,6 @@
 # OOME Generator
-![Build](https://github.com/syake-salmon/oome-generator/workflows/Build/badge.svg) | [![codecov](https://codecov.io/gh/syake-salmon/oome-generator/branch/master/graph/badge.svg)](https://codecov.io/gh/syake-salmon/oome-generator)<br /><br />
+
+![Build](https://github.com/syake-salmon/oome-generator/workflows/Build/badge.svg) | [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=syake-salmon_oome-generator&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=syake-salmon_oome-generator) | [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=syake-salmon_oome-generator&metric=security_rating)](https://sonarcloud.io/dashboard?id=syake-salmon_oome-generator) | [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=syake-salmon_oome-generator&metric=coverage)](https://sonarcloud.io/dashboard?id=syake-salmon_oome-generator)
 
 *A generator for simulating java.lang.OutOfMemoryError because of the lack of java heap space.*
 
