@@ -1,5 +1,7 @@
 package com.examples.oomeg.util;
 
+import java.util.logging.Logger;
+
 import javax.jms.IllegalStateException;
 
 import com.examples.oomeg.listener.ServletContextListenerImpl;
@@ -8,6 +10,9 @@ import com.examples.oomeg.listener.ServletContextListenerImpl;
  * {@linkplain OutOfMemoryError} generator.
  */
 public final class OOMEGenerator {
+
+    private static final Logger LOGGER = Logger
+            .getLogger(OOMEGenerator.class.getCanonicalName());
 
     private OOMEGenerator() throws IllegalStateException {
         throw new IllegalStateException(
@@ -21,8 +26,8 @@ public final class OOMEGenerator {
      */
     public static void generateOOME(final long interval) {
         int dummyArraySize = 15;
-        System.out
-                .println("Max JVM memory: " + Runtime.getRuntime().maxMemory());
+        LOGGER.info("Max JVM memory: " + Runtime.getRuntime().maxMemory());
+
         long memoryConsumed = 0;
         try {
             long[] memoryAllocated = null;
@@ -30,13 +35,12 @@ public final class OOMEGenerator {
                 memoryAllocated = new long[dummyArraySize];
                 memoryAllocated[0] = 0;
                 memoryConsumed += dummyArraySize * Long.SIZE;
-                System.out
-                        .println("Memory Consumed till now: " + memoryConsumed);
+                LOGGER.info("Memory Consumed till now: " + memoryConsumed);
                 dummyArraySize *= dummyArraySize * 2;
                 sleep(interval);
             }
         } catch (OutOfMemoryError err) {
-            System.out.println("Catching " + OutOfMemoryError.class.getName()
+            LOGGER.info("Catching " + OutOfMemoryError.class.getName()
                     + ". Generating OOME is succeeded.");
             throw err;
         }

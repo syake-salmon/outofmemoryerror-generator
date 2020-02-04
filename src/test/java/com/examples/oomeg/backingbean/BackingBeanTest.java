@@ -8,6 +8,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.jboss.weld.junit4.WeldInitiator;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,9 +28,22 @@ import com.examples.oomeg.util.OOMEGenerator;
 public class BackingBeanTest {
 
     @Rule
-    private WeldInitiator weld = WeldInitiator.from(BackingBean.class).activate(RequestScoped.class).build();
+    public WeldInitiator weld = WeldInitiator.from(BackingBean.class)
+            .activate(RequestScoped.class).build();
 
     private BackingBean testTarget;
+
+    @Before
+    public void doBefore() {
+        testTarget = weld.select(BackingBean.class).get();
+    }
+
+    @After
+    public void doAfter() {
+        if (testTarget != null) {
+            weld.destroy(BackingBean.class);
+        }
+    }
 
     @Test
     public void testInit_paramIs9999() throws Exception {
@@ -36,12 +51,11 @@ public class BackingBeanTest {
         FacesContext context = FacesContextMock.mock();
         ExternalContext exContext = PowerMockito.mock(ExternalContext.class);
         PowerMockito.when(context.getExternalContext()).thenReturn(exContext);
-        PowerMockito
-                .when(exContext.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
+        PowerMockito.when(exContext.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
                 .thenReturn("9999");
 
         /* INVOCATION */
-        testTarget = weld.select(BackingBean.class).get();
         long actual = testTarget.getInterval();
 
         /* ASSERTION */
@@ -54,14 +68,13 @@ public class BackingBeanTest {
         FacesContext context = FacesContextMock.mock();
         ExternalContext exContext = PowerMockito.mock(ExternalContext.class);
         PowerMockito.when(context.getExternalContext()).thenReturn(exContext);
-        PowerMockito
-                .when(exContext.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
+        PowerMockito.when(exContext.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
                 .thenReturn("This is not long value!");
 
         /* INVOCATION */
         Class<?> actual = null;
         try {
-            testTarget = weld.select(BackingBean.class).get();
             testTarget.getInterval();
         } catch (Exception | Error e) {
             actual = ExceptionUtil.findRootCause(e).getClass();
@@ -77,12 +90,11 @@ public class BackingBeanTest {
         FacesContext context = FacesContextMock.mock();
         ExternalContext exContext = PowerMockito.mock(ExternalContext.class);
         PowerMockito.when(context.getExternalContext()).thenReturn(exContext);
-        PowerMockito
-                .when(exContext.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
+        PowerMockito.when(exContext.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
                 .thenReturn("");
 
         /* INVOCATION */
-        testTarget = weld.select(BackingBean.class).get();
         long actual = testTarget.getInterval();
 
         /* ASSERTION */
@@ -95,12 +107,11 @@ public class BackingBeanTest {
         FacesContext context = FacesContextMock.mock();
         ExternalContext exContext = PowerMockito.mock(ExternalContext.class);
         PowerMockito.when(context.getExternalContext()).thenReturn(exContext);
-        PowerMockito
-                .when(exContext.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
+        PowerMockito.when(exContext.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
                 .thenReturn(null);
 
         /* INVOCATION */
-        testTarget = weld.select(BackingBean.class).get();
         long actual = testTarget.getInterval();
 
         /* ASSERTION */
@@ -115,7 +126,6 @@ public class BackingBeanTest {
         PowerMockito.when(context.getExternalContext()).thenReturn(exContext);
 
         /* INVOCATION */
-        testTarget = weld.select(BackingBean.class).get();
         long expected = 9999;
         testTarget.setInterval(expected);
         long actual = testTarget.getInterval();
@@ -131,11 +141,11 @@ public class BackingBeanTest {
         ExternalContext exContext = PowerMockito.mock(ExternalContext.class);
         PowerMockito.when(context.getExternalContext()).thenReturn(exContext);
         PowerMockito.mockStatic(OOMEGenerator.class);
-        PowerMockito.doThrow(new OutOfMemoryErrorMock()).when(OOMEGenerator.class, "generateOOME", 1000L);
+        PowerMockito.doThrow(new OutOfMemoryErrorMock())
+                .when(OOMEGenerator.class, "generateOOME", 1000L);
 
         /* INVOCATION */
         boolean condition = false;
-        testTarget = weld.select(BackingBean.class).get();
         try {
             testTarget.generateOOME();
         } catch (OutOfMemoryError e) {

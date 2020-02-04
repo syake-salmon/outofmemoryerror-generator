@@ -1,26 +1,24 @@
 package com.examples.oomeg.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import com.examples.oomeg.testutil.PrintStreamStub;
 
 public class OOMEGeneratorTest {
 
     @Test
     public void testGenerateOOME() throws Exception {
         /* SETUP */
-        PrintStreamStub out = new PrintStreamStub();
-        System.setOut(out);
 
         /* INVOCATION */
+        boolean condition = false;
         try {
             OOMEGenerator.generateOOME(1);
-        } catch (OutOfMemoryError e) {}
-        String actual = out.getLastOutput();
+        } catch (OutOfMemoryError e) {
+            condition = true;
+        }
 
         /* ASSERTION */
-        assertEquals("Catching java.lang.OutOfMemoryError. Generating OOME is succeeded.", actual);
+        assertTrue(condition);
     }
 }
