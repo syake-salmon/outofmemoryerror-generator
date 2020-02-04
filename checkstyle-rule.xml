@@ -31,12 +31,8 @@
   <module name="FileTabCharacter" />
   <!-- Miscellaneous other checks. -->
   <!-- See http://checkstyle.sourceforge.net/config_misc.html -->
-  <module name="RegexpSingleline">
-    <property name="format" value="\s+$" />
-    <property name="minimum" value="0" />
-    <property name="maximum" value="0" />
-    <property name="message" value="Line has trailing spaces." />
-  </module>
+  <!-- <module name="RegexpSingleline"> <property name="format" value="\s+$" /> <property name="minimum" value="0" /> <property name="maximum" value="0" /> <property name="message" value="Line has trailing 
+    spaces." /> </module> -->
   <!-- Checks for Headers -->
   <!-- See http://checkstyle.sourceforge.net/config_header.html -->
   <!-- <module name="Header"> -->
@@ -56,7 +52,9 @@
     <module name="JavadocVariable">
       <property name="scope" value="protected" />
     </module>
-    <module name="JavadocStyle" />
+    <module name="JavadocStyle">
+      <property name="checkFirstSentence" value="false" />
+    </module>
     <!-- Checks for Naming Conventions. -->
     <!-- See http://checkstyle.sourceforge.net/config_naming.html -->
     <module name="ConstantName" />
@@ -110,7 +108,10 @@
     <!-- See http://checkstyle.sourceforge.net/config_coding.html -->
     <module name="EmptyStatement" />
     <module name="EqualsHashCode" />
-    <module name="HiddenField" />
+    <module name="HiddenField">
+      <property name="ignoreConstructorParameter" value="true" />
+      <property name="ignoreSetter" value="true" />
+    </module>
     <module name="IllegalInstantiation" />
     <module name="InnerAssignment" />
     <module name="MagicNumber" />
