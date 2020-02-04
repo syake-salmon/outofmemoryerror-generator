@@ -1,7 +1,5 @@
 package com.examples.oomeg.util;
 
-import com.examples.oomeg.listener.ServletContextListenerImpl;
-
 public class OOMEGenerator {
 
     public static void generateOOME(long interval) {
@@ -26,19 +24,6 @@ public class OOMEGenerator {
         } catch (OutOfMemoryError err) {
             System.out.println("Catching " + OutOfMemoryError.class.getName() + ". Generating OOME is succeeded.");
             throw err;
-        }
-    }
-
-    public static void main(String... args) {
-        Long interval = null;
-        if (args.length > 0) {
-            interval = Long.valueOf(Long.valueOf(args[0]));
-        }
-
-        if (interval == null) {
-            generateOOME(ServletContextListenerImpl.DEFAULT_GENERATE_OOME_INTERVAL_MILSEC);
-        } else {
-            generateOOME(interval);
         }
     }
 }
