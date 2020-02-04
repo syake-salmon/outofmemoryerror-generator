@@ -1,7 +1,7 @@
 package com.examples.oomeg.backingbean;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
@@ -18,6 +18,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.examples.oomeg.listener.ServletContextListenerImpl;
 import com.examples.oomeg.testutil.ExceptionUtil;
 import com.examples.oomeg.testutil.FacesContextMock;
+import com.examples.oomeg.testutil.OutOfMemoryErrorMock;
 import com.examples.oomeg.util.OOMEGenerator;
 
 @RunWith(PowerMockRunner.class)
@@ -130,17 +131,18 @@ public class BackingBeanTest {
         ExternalContext exContext = PowerMockito.mock(ExternalContext.class);
         PowerMockito.when(context.getExternalContext()).thenReturn(exContext);
         PowerMockito.mockStatic(OOMEGenerator.class);
+        PowerMockito.doThrow(new OutOfMemoryErrorMock()).when(OOMEGenerator.class, "generateOOME", 1000L);
 
         /* INVOCATION */
-        boolean actual = false;
+        boolean condition = false;
         testTarget = weld.select(BackingBean.class).get();
         try {
             testTarget.generateOOME();
-        } catch (Exception | Error e) {
-            actual = true;
+        } catch (OutOfMemoryError e) {
+            condition = true;
         }
 
         /* ASSERTION */
-        assertFalse(actual);
+        assertTrue(condition);
     }
 }
