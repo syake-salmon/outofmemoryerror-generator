@@ -7,7 +7,7 @@ import com.examples.oomeg.listener.ServletContextListenerImpl;
 /**
  * {@linkplain OutOfMemoryError} generator.
  */
-public class OOMEGenerator {
+public final class OOMEGenerator {
 
     private OOMEGenerator() throws IllegalStateException {
         throw new IllegalStateException(

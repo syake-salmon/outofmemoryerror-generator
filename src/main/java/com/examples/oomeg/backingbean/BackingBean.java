@@ -29,8 +29,9 @@ public class BackingBean {
         String intervalStr = FacesContext.getCurrentInstance()
                 .getExternalContext().getInitParameter(
                         ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC);
-        if (intervalStr != null && !intervalStr.isEmpty())
+        if (intervalStr != null && !intervalStr.isEmpty()) {
             interval = Long.valueOf(intervalStr);
+        }
     }
 
     /**
