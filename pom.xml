@@ -155,13 +155,14 @@
         <version>0.8.5</version>
         <executions>
           <execution>
+            <phase>clean</phase>
             <goals>
               <goal>prepare-agent</goal>
             </goals>
           </execution>
           <execution>
             <id>report</id>
-            <phase>test</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>report</goal>
             </goals>
