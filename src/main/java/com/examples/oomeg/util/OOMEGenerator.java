@@ -1,5 +1,6 @@
 package com.examples.oomeg.util;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.jms.IllegalStateException;
@@ -26,7 +27,8 @@ public final class OOMEGenerator {
      */
     public static void generateOOME(final long interval) {
         int dummyArraySize = 15;
-        LOGGER.info("Max JVM memory: " + Runtime.getRuntime().maxMemory());
+        LOGGER.log(Level.INFO, "Max JVM memory: {0}",
+                Runtime.getRuntime().maxMemory());
 
         long memoryConsumed = 0;
         try {
@@ -35,7 +37,8 @@ public final class OOMEGenerator {
                 memoryAllocated = new long[dummyArraySize];
                 memoryAllocated[0] = 0;
                 memoryConsumed += dummyArraySize * Long.SIZE;
-                LOGGER.info("Memory Consumed till now: " + memoryConsumed);
+                LOGGER.log(Level.INFO, "Memory Consumed till now: {0}",
+                        memoryConsumed);
                 dummyArraySize *= dummyArraySize * 2;
                 sleep(interval);
             }
