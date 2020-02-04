@@ -132,6 +132,7 @@
           </execution>
         </executions>
         <configuration>
+          <configLocation>${basedir}/checkstyle-rule.xml</configLocation>
           <linkXRef>false</linkXRef>
         </configuration>
       </plugin>
