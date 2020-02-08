@@ -12,6 +12,8 @@ import com.examples.oomeg.listener.ServletContextListenerImpl;
  */
 public final class OOMEGenerator {
 
+    private static int dummyArraySize = 15;
+
     private static final Logger LOGGER = Logger
             .getLogger(OOMEGenerator.class.getCanonicalName());
 
@@ -26,7 +28,6 @@ public final class OOMEGenerator {
      * @param interval {@linkplain ServletContextListenerImpl#CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC}
      */
     public static void generateOOME(final long interval) {
-        int dummyArraySize = 15;
         LOGGER.log(Level.INFO, "Max JVM memory: {0}",
                 Runtime.getRuntime().maxMemory());
 
