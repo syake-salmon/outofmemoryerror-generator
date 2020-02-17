@@ -1,8 +1,5 @@
 package com.examples.oomeg.listener;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import javax.servlet.ServletContextEvent;
 
 import org.junit.Before;
@@ -16,9 +13,11 @@ import com.examples.oomeg.testutil.OutOfMemoryErrorMock;
 import com.examples.oomeg.testutil.ServletContextStub;
 import com.examples.oomeg.util.OOMEGenerator;
 
+import junit.framework.TestCase;
+
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ OOMEGenerator.class })
-public class ServletContextListenerImplTest {
+public class ServletContextListenerImplTest extends TestCase {
 
     private ServletContextListenerImpl testTarget;
 
@@ -28,17 +27,21 @@ public class ServletContextListenerImplTest {
     }
 
     @Test
-    public void testContextInitialized_flagIsTrueAndIntervalIsSet() throws Exception {
+    public void testContextInitialized_flagIsTrueAndIntervalIsSet()
+            throws Exception {
         /* SETUP */
         ServletContextEvent sce = PowerMockito.mock(ServletContextEvent.class);
         ServletContextStub sc = PowerMockito.mock(ServletContextStub.class);
-        PowerMockito.when(sc.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_ON_BOOT))
+        PowerMockito.when(sc.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_ON_BOOT))
                 .thenReturn("true");
-        PowerMockito.when(sc.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
+        PowerMockito.when(sc.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
                 .thenReturn("5000");
         PowerMockito.when(sce.getServletContext()).thenReturn(sc);
         PowerMockito.mockStatic(OOMEGenerator.class);
-        PowerMockito.doThrow(new OutOfMemoryErrorMock()).when(OOMEGenerator.class, "generateOOME", 5000L);
+        PowerMockito.doThrow(new OutOfMemoryErrorMock())
+                .when(OOMEGenerator.class, "generateOOME", 5000L);
 
         /* INVOCATION */
         boolean condition = false;
@@ -53,17 +56,21 @@ public class ServletContextListenerImplTest {
     }
 
     @Test
-    public void testContextInitialized_flagIsTrueAndIntervalIsNull() throws Exception {
+    public void testContextInitialized_flagIsTrueAndIntervalIsNull()
+            throws Exception {
         /* SETUP */
         ServletContextEvent sce = PowerMockito.mock(ServletContextEvent.class);
         ServletContextStub sc = PowerMockito.mock(ServletContextStub.class);
-        PowerMockito.when(sc.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_ON_BOOT))
+        PowerMockito.when(sc.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_ON_BOOT))
                 .thenReturn("true");
-        PowerMockito.when(sc.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
+        PowerMockito.when(sc.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
                 .thenReturn(null);
         PowerMockito.when(sce.getServletContext()).thenReturn(sc);
         PowerMockito.mockStatic(OOMEGenerator.class);
-        PowerMockito.doThrow(new OutOfMemoryErrorMock()).when(OOMEGenerator.class, "generateOOME", 1000L);
+        PowerMockito.doThrow(new OutOfMemoryErrorMock())
+                .when(OOMEGenerator.class, "generateOOME", 1000L);
 
         /* INVOCATION */
         boolean condition = false;
@@ -78,17 +85,21 @@ public class ServletContextListenerImplTest {
     }
 
     @Test
-    public void testContextInitialized_flagIsTrueAndIntervalIsEmpty() throws Exception {
+    public void testContextInitialized_flagIsTrueAndIntervalIsEmpty()
+            throws Exception {
         /* SETUP */
         ServletContextEvent sce = PowerMockito.mock(ServletContextEvent.class);
         ServletContextStub sc = PowerMockito.mock(ServletContextStub.class);
-        PowerMockito.when(sc.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_ON_BOOT))
+        PowerMockito.when(sc.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_ON_BOOT))
                 .thenReturn("true");
-        PowerMockito.when(sc.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
+        PowerMockito.when(sc.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_INTERVAL_MILSEC))
                 .thenReturn("");
         PowerMockito.when(sce.getServletContext()).thenReturn(sc);
         PowerMockito.mockStatic(OOMEGenerator.class);
-        PowerMockito.doThrow(new OutOfMemoryErrorMock()).when(OOMEGenerator.class, "generateOOME", 1000L);
+        PowerMockito.doThrow(new OutOfMemoryErrorMock())
+                .when(OOMEGenerator.class, "generateOOME", 1000L);
 
         /* INVOCATION */
         boolean condition = false;
@@ -107,7 +118,8 @@ public class ServletContextListenerImplTest {
         /* SETUP */
         ServletContextEvent sce = PowerMockito.mock(ServletContextEvent.class);
         ServletContextStub sc = PowerMockito.mock(ServletContextStub.class);
-        PowerMockito.when(sc.getInitParameter(ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_ON_BOOT))
+        PowerMockito.when(sc.getInitParameter(
+                ServletContextListenerImpl.CONTXTPRM_GENERATE_OOME_ON_BOOT))
                 .thenReturn("false");
         PowerMockito.when(sce.getServletContext()).thenReturn(sc);
 

@@ -163,12 +163,14 @@ public class ServletContextStub implements ServletContext {
     }
 
     @Override
-    public Dynamic addServlet(String servletName, Class<? extends Servlet> servletClass) {
+    public Dynamic addServlet(String servletName,
+            Class<? extends Servlet> servletClass) {
         return null;
     }
 
     @Override
-    public <T extends Servlet> T createServlet(Class<T> clazz) throws ServletException {
+    public <T extends Servlet> T createServlet(Class<T> clazz)
+            throws ServletException {
         return null;
     }
 
@@ -183,22 +185,26 @@ public class ServletContextStub implements ServletContext {
     }
 
     @Override
-    public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName, String className) {
+    public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName,
+            String className) {
         return null;
     }
 
     @Override
-    public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName, Filter filter) {
+    public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName,
+            Filter filter) {
         return null;
     }
 
     @Override
-    public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName, Class<? extends Filter> filterClass) {
+    public javax.servlet.FilterRegistration.Dynamic addFilter(String filterName,
+            Class<? extends Filter> filterClass) {
         return null;
     }
 
     @Override
-    public <T extends Filter> T createFilter(Class<T> clazz) throws ServletException {
+    public <T extends Filter> T createFilter(Class<T> clazz)
+            throws ServletException {
         return null;
     }
 
@@ -218,7 +224,8 @@ public class ServletContextStub implements ServletContext {
     }
 
     @Override
-    public void setSessionTrackingModes(Set<SessionTrackingMode> sessionTrackingModes) {}
+    public void setSessionTrackingModes(
+            Set<SessionTrackingMode> sessionTrackingModes) {}
 
     @Override
     public Set<SessionTrackingMode> getDefaultSessionTrackingModes() {
@@ -240,7 +247,8 @@ public class ServletContextStub implements ServletContext {
     public void addListener(Class<? extends EventListener> listenerClass) {}
 
     @Override
-    public <T extends EventListener> T createListener(Class<T> clazz) throws ServletException {
+    public <T extends EventListener> T createListener(Class<T> clazz)
+            throws ServletException {
         return null;
     }
 

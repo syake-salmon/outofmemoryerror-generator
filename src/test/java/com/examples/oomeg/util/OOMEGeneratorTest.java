@@ -1,10 +1,10 @@
 package com.examples.oomeg.util;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
-public class OOMEGeneratorTest {
+import junit.framework.TestCase;
+
+public class OOMEGeneratorTest extends TestCase {
 
     @Test
     public void testGenerateOOME() throws Exception {
