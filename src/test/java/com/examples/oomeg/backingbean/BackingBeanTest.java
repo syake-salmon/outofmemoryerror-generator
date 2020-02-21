@@ -1,5 +1,8 @@
 package com.examples.oomeg.backingbean;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -20,11 +23,9 @@ import com.examples.oomeg.testutil.FacesContextMock;
 import com.examples.oomeg.testutil.OutOfMemoryErrorMock;
 import com.examples.oomeg.util.OOMEGenerator;
 
-import junit.framework.TestCase;
-
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ OOMEGenerator.class })
-public class BackingBeanTest extends TestCase {
+public class BackingBeanTest {
 
     @Rule
     public WeldInitiator weld = WeldInitiator.from(BackingBean.class)
