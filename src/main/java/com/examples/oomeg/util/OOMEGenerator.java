@@ -3,8 +3,6 @@ package com.examples.oomeg.util;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.jms.IllegalStateException;
-
 import com.examples.oomeg.listener.ServletContextListenerImpl;
 
 /**
