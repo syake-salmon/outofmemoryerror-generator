@@ -15,7 +15,7 @@ public final class OOMEGenerator {
     private static final Logger LOGGER = Logger
             .getLogger(OOMEGenerator.class.getCanonicalName());
 
-    private OOMEGenerator() throws IllegalStateException {
+    private OOMEGenerator() {
         throw new IllegalStateException(
                 this.getClass().getName() + " is utility class.");
     }
