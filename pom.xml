@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.examples</groupId>
+  <groupId>com.syakeapps</groupId>
   <artifactId>oome-generator</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>war</packaging>
   <properties>
     <encoding>UTF-8</encoding>
     <java.version>1.8</java.version>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.source>${java.version}</maven.compiler.source>
-    <failOnMissingWebXml>false</failOnMissingWebXml>
+    <jboss.eap.version>7.1.6.GA</jboss.eap.version>
     <powermock.version>2.0.5</powermock.version>
     <sonar.projectKey>syake-salmon_${project.artifactId}</sonar.projectKey>
     <sonar.organization>syake-salmon</sonar.organization>
@@ -19,27 +19,83 @@
     <sonar.java.binaries>${project.build.outputDirectory}</sonar.java.binaries>
     <sonar.java.test.binaries>${project.build.testOutputDirectory}</sonar.java.test.binaries>
     <sonar.java.checkstyle.reportPaths>${project.build.directory}/checkstyle-result.xml</sonar.java.checkstyle.reportPaths>
-    <sonar.java.spotbugs.reportPaths>${project.build.directory}/findbugsXml.xml</sonar.java.spotbugs.reportPaths>
+    <sonar.java.spotbugs.reportPaths>${project.build.directory}/spotbugsXml.xml</sonar.java.spotbugs.reportPaths>
     <sonar.coverage.jacoco.xmlReportPaths>${project.reporting.outputDirectory}/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     <sonar.junit.reportPaths>${project.build.directory}/surefire-reports</sonar.junit.reportPaths>
   </properties>
   <repositories>
     <repository>
-      <id>jboss-eap-repository-group</id>
-      <name>JBoss EAP Maven Repository</name>
+      <id>jboss-enterprise-maven-repository</id>
       <url>https://maven.repository.redhat.com/ga/</url>
-      <layout>default</layout>
       <releases>
         <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
       </releases>
       <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
+        <enabled>false</enabled>
       </snapshots>
     </repository>
   </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>jboss-enterprise-maven-repository</id>
+      <url>https://maven.repository.redhat.com/ga/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.spec</groupId>
+        <artifactId>jboss-javaee-7.0</artifactId>
+        <version>1.1.0.Final-redhat-5</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.bom</groupId>
+        <artifactId>eap-runtime-artifacts</artifactId>
+        <version>${jboss.eap.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.bom</groupId>
+        <artifactId>jboss-eap-javaee7</artifactId>
+        <version>${jboss.eap.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
+    <!-- Logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-ext</artifactId>
+    </dependency>
+    <!-- Servlet -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.servlet</groupId>
+      <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <!-- JSF -->
+    <dependency>
+      <groupId>org.jboss.spec.javax.faces</groupId>
+      <artifactId>jboss-jsf-api_2.2_spec</artifactId>
+    </dependency>
+    <!-- CDI -->
+    <dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <version>2.0.SP1</version><!--$NO-MVN-MAN-VER$ -->
+      <scope>provided</scope>
+    </dependency>
     <!-- JUnit -->
     <dependency>
       <groupId>junit</groupId>
@@ -64,37 +120,38 @@
     <dependency>
       <groupId>org.jboss.weld</groupId>
       <artifactId>weld-junit4</artifactId>
-      <version>2.0.1.Final</version>
+      <version>2.0.1.Final</version><!--$NO-MVN-MAN-VER$ -->
       <scope>test</scope>
     </dependency>
-    <!-- JBoss JavaEE -->
     <dependency>
-      <groupId>org.jboss.spec</groupId>
-      <artifactId>jboss-javaee-7.0</artifactId>
-      <version>1.1.1.Final</version>
-      <type>pom</type>
-      <scope>provided</scope>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-core-impl</artifactId>
+      <version>3.1.2.Final</version><!--$NO-MVN-MAN-VER$ -->
+      <scope>test</scope>
     </dependency>
-    <!-- CDI -->
     <dependency>
-      <groupId>javax.enterprise</groupId>
-      <artifactId>cdi-api</artifactId>
-      <version>2.0.SP1</version>
-      <scope>provided</scope>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-spi</artifactId>
+      <version>3.1.SP1</version><!--$NO-MVN-MAN-VER$ -->
+      <scope>test</scope>
     </dependency>
-    <!-- JSF -->
     <dependency>
-      <groupId>javax.faces</groupId>
-      <artifactId>jsf-api</artifactId>
-      <version>2.1</version>
-      <scope>provided</scope>
+      <groupId>org.jboss.weld.probe</groupId>
+      <artifactId>weld-probe-core</artifactId>
+      <version>3.1.2.Final</version><!--$NO-MVN-MAN-VER$ -->
+      <scope>test</scope>
     </dependency>
-    <!-- Servlet -->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
-      <scope>provided</scope>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-api</artifactId>
+      <version>3.1.SP1</version><!--$NO-MVN-MAN-VER$ -->
+      <scope>test</scope>
+    </dependency>
+    <!-- H2 -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
@@ -132,21 +189,25 @@
           </execution>
         </executions>
         <configuration>
+          <skip>${skipTests}</skip>
           <configLocation>${basedir}/checkstyle-rule.xml</configLocation>
           <linkXRef>false</linkXRef>
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.5</version>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>3.1.12.2</version>
         <executions>
           <execution>
-            <id>findbugs</id>
+            <id>spotbugs</id>
             <phase>test</phase>
             <goals>
-              <goal>findbugs</goal>
+              <goal>spotbugs</goal>
             </goals>
+            <configuration>
+              <skip>${skipTests}</skip>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -156,13 +217,14 @@
         <version>0.8.5</version>
         <executions>
           <execution>
+            <id>default-prepare-agent</id>
             <phase>clean</phase>
             <goals>
               <goal>prepare-agent</goal>
             </goals>
           </execution>
           <execution>
-            <id>report</id>
+            <id>default-report</id>
             <phase>prepare-package</phase>
             <goals>
               <goal>report</goal>

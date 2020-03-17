@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en-US" class="h-100">
+<f:view xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" contentType="text/html">
+  <h:head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <ui:param name="brand" value="OOME Generator" />
+    <base href="#{request.requestURL.substring(0, request.requestURL.length() - request.requestURI.length())}#{request.contextPath}/" />
+    <link rel="canonical" href="#{request.requestURL.substring(0, request.requestURL.length() - request.requestURI.length())}#{request.contextPath}/" />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="icon/favicon.ico" />
+    <link rel="apple-touch-icon" type="image/png" href="icon/apple-touch-icon-180x180.png" />
+    <link rel="icon" type="image/png" href="icon/icon-192x192.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/sticky-footer.css" />
+    <title><ui:insert name="title" /> - #{brand}</title>
+  </h:head>
+  <h:body class="d-flex flex-column h-100">
+    <header>
+      <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <a class="navbar-brand" href="view/index.faces">#{brand}</a>
+        </div>
+      </nav>
+    </header>
+    <main class="d-flex p-2">
+      <div class="container-lg">
+        <ui:insert name="content" />
+      </div>
+    </main>
+    <footer class="footer mt-auto py-3 text-right">
+      <div class="container-lg">
+        <span class="text-muted">(C) 2020 syakeApps</span>
+      </div>
+    </footer>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+  </h:body>
+</f:view>
+</html>

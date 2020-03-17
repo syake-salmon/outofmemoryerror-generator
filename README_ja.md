@@ -17,9 +17,9 @@ mavenをインストールしていない場合は、[こちら](https://github.
 
 ## 使用方法
 1. JavaEEサーバにWARをデプロイする。(例, JBoss EAP)
-2. アプリにアクセスする。(例, http&#58;//localhost:8080/OOMEGenerator)
-3. リンクをクリックする。
-<img width="300" alt="screenshot" src="https://user-images.githubusercontent.com/34976416/72512044-e2372e00-388e-11ea-9cfc-4b2eafe08adf.png">
+2. アプリにアクセスする。(例, http&#58;//localhost:8080/oome-generator)
+3. ボタンをクリックする。  
+<img width="300" alt="screenshot" src="https://user-images.githubusercontent.com/34976416/76815133-1f448000-6840-11ea-8a36-6c357437da36.PNG">
 
 ## Tips
 ### 起動時にOOMEを発生させる

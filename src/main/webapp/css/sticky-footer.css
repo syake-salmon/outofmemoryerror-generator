@@ -1,0 +1,9 @@
+.footer {
+  flex-shrink: 0;
+  background-color: #f5f5f5;
+}
+
+.footer > [class*="container"] {
+  padding-right: 15px;
+  padding-left: 15px;
+}
